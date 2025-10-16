@@ -1,61 +1,60 @@
-# 🏋️‍♂️ ASP.NET Sports Club Management (Web Forms)
+# 🏋️‍♂️ ASP.NET Sports Club Management System
 
-A role-based **ASP.NET Web Forms** application designed to streamline the management of a sports club.  
-It features **member management**, **training assignments**, **payments**, **messaging**, and **role-specific dashboards** — all wrapped in a professional, database-driven web interface.
+A full-stack **ASP.NET Web Forms** application that streamlines how a sports club manages its operations.  
+It supports **member registration**, **training session management**, **payments**, **messaging**, and **role-based dashboards** — all backed by an integrated SQL Server database.
 
 ---
 
-## ✨ Key Highlights
+## ✨ Highlights
 
 ### 🔐 Role-Based Access
-Each role has a custom dashboard and permissions:
-- **Admin** — Full control over members, trainings, payments, and communications.
-- **Trainer (Entraîneur)** — Create, edit, and assign training sessions to members.
-- **President** — Oversee club activity with a high-level dashboard.
-- **Member** — View assigned trainings, received messages, and payment confirmations.
+- **Admin:** Full control over members, trainings, messages, and payments.  
+- **Trainer (Entraîneur):** Create, edit, and assign training sessions to members.  
+- **President:** Access an overview of all club activities and data.  
+- **Member:** View assigned trainings, messages, and payment history.
 
-### 💪 Core Features
-- **Member Management:** Add, edit, delete, and list members with relevant details.
-- **Training Management:** Create and manage training sessions, assign/unassign members, and view assignments.
-- **Messaging System:** In-app inbox/outbox with send, read, and reply functionality.
-- **Payment System:** Full payment workflow with success/cancel states.
-- **Chatbot Page:** Simple assistance chatbot integrated in `Chatbot.aspx`.
-- **Authentication:** Secure login/signup with role detection.
-- **SQL Integration:** Includes `.sql` scripts to generate and seed the club database.
+### 💪 Core Modules
+- **Member Management:** Add, edit, or remove club members.  
+- **Training Management:** Create, assign, or unassign training sessions.  
+- **Messaging:** In-app inbox/outbox system for user communication.  
+- **Payments:** Integrated payment pages with success and cancel states.  
+- **Chatbot:** Lightweight helper built into the interface for quick guidance.  
+- **Authentication:** Login and signup with role-based redirection.  
+- **Database Integration:** SQL scripts included for easy setup and testing.
 
 ---
 
-## 🧩 Application Structure
+## 🧱 Application Structure
 
 | Section | Key Pages | Description |
 |----------|------------|-------------|
 | **Authentication & Layout** | `loginsport.aspx`, `signupsport.aspx`, `Site.Master` | Login, registration, and shared layout. |
-| **Admin Dashboard** | `AdminDashboard.aspx` | Central hub for managing all club data. |
+| **Admin Dashboard** | `AdminDashboard.aspx` | Central management of all club operations. |
 | **Trainer Dashboard** | `EntraineurDashboard.aspx`, `AssignTraining.aspx`, `UnassignMember.aspx` | Manage training sessions and member assignments. |
-| **President Dashboard** | `PresidentDashboard.aspx` | Overview of the club's performance. |
-| **Member Dashboard** | `MemberDashboard.aspx` | View assigned trainings and messages. |
-| **Messaging** | `SendMessage.aspx`, `ReadMessage.aspx`, `ReplyMessage.aspx`, `ViewMessages.aspx` | Full in-app communication between users. |
-| **Payments** | `Payment.aspx`, `PaymentSuccess.aspx`, `PaymentCancel.aspx` | Payment initiation and status tracking. |
-| **Chatbot** | `Chatbot.aspx` | Quick guidance and user assistance. |
+| **President Dashboard** | `PresidentDashboard.aspx` | High-level summary of club performance. |
+| **Member Dashboard** | `MemberDashboard.aspx` | Member-specific training and messaging view. |
+| **Messaging** | `SendMessage.aspx`, `ReadMessage.aspx`, `ReplyMessage.aspx`, `ViewMessages.aspx` | Two-way messaging between roles. |
+| **Payments** | `Payment.aspx`, `PaymentSuccess.aspx`, `PaymentCancel.aspx` | Payment handling and status updates. |
+| **Chatbot** | `Chatbot.aspx` | Built-in support assistant for users. |
 
 ---
 
-## 🧱 Technology Stack
+## 🧩 Tech Stack
 
-- **Framework:** ASP.NET Web Forms (C#)
-- **Database:** SQL Server / LocalDB
-- **Language:** C# (Code-Behind) and ASP.NET (UI)
-- **IDE:** Visual Studio 2022 (Community Edition)
-- **Configuration:** `Web.config` for connection strings and environment settings
+- **Frontend:** ASP.NET Web Forms  
+- **Backend:** C# (Code-Behind)  
+- **Database:** SQL Server / LocalDB  
+- **IDE:** Visual Studio 2022  
+- **Architecture:** Multi-tier Web Forms structure using master pages and reusable components  
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Visual Studio 2022 (or later)
-- .NET Framework Developer Pack
-- SQL Server / LocalDB instance
+- Visual Studio 2022 or later (Community Edition or higher)  
+- .NET Framework Developer Pack  
+- SQL Server / LocalDB instance  
 
 ### 1️⃣ Clone the Repository
 ```bash
@@ -63,92 +62,74 @@ git clone https://github.com/HoussamImhiouach/ASP.NET-SportsClub-Management.git
 ```
 
 ### 2️⃣ Open in Visual Studio
-- Open the solution file:  
-  `ProjetSportFinalHoussamEddneImhiouach.sln`
-- Wait for NuGet packages to restore automatically.
+Open the solution file (the `.sln` file) and allow NuGet to restore any dependencies automatically.
 
 ### 3️⃣ Configure the Database
-1. Open **SQL Server Object Explorer** in Visual Studio.
-2. Create a new database named `ClubManagementDB`.
-3. Run the provided SQL scripts (`SQLQuery1.sql`, `SQLQuery2.sql`, `SQLQuery3.sql`).
-4. Update your `Web.config` connection string as needed.
+1. Open **SQL Server Object Explorer** in Visual Studio.  
+2. Create a new database (e.g., `ClubManagementDB`).  
+3. Run the provided SQL scripts (`SQLQuery1.sql`, `SQLQuery2.sql`, `SQLQuery3.sql`).  
+4. Update the connection string in `Web.config` as needed.
 
-### 4️⃣ Run the Project
-- Select **IIS Express** as the launch option.
-- Press **F5** or click ▶ **Start Debugging**.
-- The website will launch in your browser (`https://localhost:xxxx/`).
+### 4️⃣ Run the Application
+- Set **IIS Express** as the startup option.  
+- Press **F5** or click **Start Debugging**.  
+- The site will launch at `https://localhost:<port>/`.
 
 ---
 
-## 🧭 Directory Layout
+## 📂 Project Structure
 
 ```
 ASP.NET-SportsClub-Management/
-├─ App_Code/                       # C# classes (Database connections, logic, helpers)
-├─ *.aspx / *.aspx.cs              # Web pages and code-behind
-├─ *.aspx.designer.cs              # Auto-generated UI code
-├─ SQLQuery1.sql / SQLQuery2.sql   # Database schema and seed data
-├─ Site.Master                     # Shared layout
-├─ Web.config                      # Configuration file (database, auth, etc.)
-├─ packages.config                 # NuGet dependencies
-└─ ProjetSportFinalHoussamEddneImhiouach.sln  # Solution entry point
+├─ App_Code/                     # Shared C# logic (database, utilities)
+├─ *.aspx / *.aspx.cs            # Pages and their code-behind files
+├─ *.aspx.designer.cs            # Auto-generated layout code
+├─ SQLQuery1.sql / SQLQuery2.sql # Database schema and seed data
+├─ Site.Master                   # Main site layout
+├─ Web.config                    # Configuration (DB connections, auth, etc.)
+├─ packages.config               # NuGet dependencies
+└─ Solution (.sln) file          # Visual Studio entry point
 ```
 
 ---
 
-## 🧾 Feature Overview
+## 🧾 Features Overview
 
 ### 👥 Members
-- Add new members with full details.
-- Edit, view, or delete existing members.
-- Accessible via `ManageMembers.aspx`, `EditMember.aspx`, `DeleteMember.aspx`.
+Add, edit, list, or delete members via the Admin panel.  
 
 ### 🏋️ Trainings
-- Create and manage training sessions.
-- Assign or unassign members to specific sessions.
-- Accessible via `ManageTraining.aspx`, `AssignTraining.aspx`, `UnassignMember.aspx`.
+Create and assign training sessions; view and manage assigned members.  
 
 ### 💬 Messaging
-- In-app chat system.
-- Compose, read, and reply to messages between users.
-- Accessible via `SendMessage.aspx`, `ViewMessages.aspx`, `ReadMessage.aspx`, `ReplyMessage.aspx`.
+Compose, view, read, and reply to messages within the app.  
 
 ### 💳 Payments
-- Initiate payments (`Payment.aspx`).
-- Display transaction results (`PaymentSuccess.aspx` / `PaymentCancel.aspx`).
+Simulate or process payments through success/cancel pages.  
 
 ### 🤖 Chatbot
-- Interactive assistant for users within `Chatbot.aspx`.
-
-### 🧍 Roles
-- **Admin:** Complete management of members, trainings, and messages.
-- **Trainer:** Create and assign training sessions.
-- **President:** View dashboards for global statistics.
-- **Member:** Check assignments, send messages, and track payments.
+Provides quick assistance directly from the web interface.  
 
 ---
 
 ## 🧰 Development Notes
 
-- Avoid committing `bin/`, `obj/`, `.vs/`, and other build artifacts (already handled by `.gitignore`).
-- Store sensitive data (API keys, DB credentials) securely in `Web.config` or environment variables.
-- The project follows a modular Web Forms structure with reusable controls and consistent naming conventions.
+- The `.gitignore` already excludes `bin/`, `obj/`, `.vs/`, and other build artifacts.  
+- For safety, store sensitive data like API keys and connection strings in `Web.config` or environment variables.  
+- Designed to demonstrate CRUD operations, role-based access, and SQL-backed Web Forms logic.
 
 ---
 
-## 🧑‍💻 Author
+## 👨‍💻 Project Info
 
-**Houssam‑Eddine Imhiouach**  
-📍 Montréal, QC, Canada  
-💼 [GitHub Profile](https://github.com/HoussamImhiouach)
+Developed as part of a professional training project to demonstrate **ASP.NET full-stack capabilities** and **database-driven web architecture**.
 
 ---
 
 ## 🪪 License
 
-This project is released for educational and portfolio purposes.  
-You may adapt and reuse it under the **MIT License**.
+Released for educational and portfolio purposes under the **MIT License**.
 
 ---
 
-> “A complete ASP.NET Web Forms system demonstrating full-stack CRUD logic, multi-role dashboards, database integration, and in-app communication — all within a clean, production-like structure.”
+> 💡 *A complete ASP.NET Web Forms system showing multi-role dashboards, full CRUD logic, messaging, and payments — built with production-like structure and real database integration.*
