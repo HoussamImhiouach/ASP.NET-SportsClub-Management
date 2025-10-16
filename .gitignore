@@ -1,0 +1,15 @@
+﻿# Build and Visual Studio folders
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+*.pdb
+*.dbmdl
+*.opendb
+*.ide
+
+# Publish output
+publish/

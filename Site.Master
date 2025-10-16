@@ -1,0 +1,133 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.Master.cs" Inherits="ProjetSportFinalHoussamEddneImhiouach.Site" %>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Site Master</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .header, .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .content {
+            padding: 20px;
+        }
+
+        /* Chatbot Button and Overlay */
+        #chatbotButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        #chatbotContainer {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #888;
+            z-index: 1000;
+        }
+        #chatHeader {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        #chatMessages {
+            height: 300px;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+        #chatInput {
+            width: calc(100% - 20px);
+            margin: 10px;
+            padding: 5px;
+        }
+    </style>
+    <script>
+        function toggleChatbot() {
+            var chatContainer = document.getElementById("chatbotContainer");
+            if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
+                chatContainer.style.display = "block";
+            } else {
+                chatContainer.style.display = "none";
+            }
+        }
+
+        function sendMessage() {
+            var input = document.getElementById("chatInput");
+            var message = input.value.trim();
+
+            if (message !== "") {
+                var chatMessages = document.getElementById("chatMessages");
+                chatMessages.innerHTML += "<div><strong>You:</strong> " + message + "</div>";
+
+                // Use fetch to call server-side endpoint
+                fetch("Chatbot.aspx/GetChatbotResponse", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: message })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        chatMessages.innerHTML += "<div><strong>Bot:</strong> " + data.d + "</div>";
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    })
+                    .catch(err => console.error("Error:", err));
+
+                input.value = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Header -->
+        <div class="header">
+            <h1>Gestion des Clubs Sportifs</h1>
+        </div>
+
+        <!-- Main Content Placeholder -->
+        <div class="content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2024 Gestion des Clubs Sportifs. All Rights Reserved.</p>
+        </div>
+
+        <!-- Chatbot Button -->
+        <button id="chatbotButton" type="button" onclick="navigateToChatbot()">💬</button>
+<script>
+    function navigateToChatbot() {
+        window.location.href = "Chatbot.aspx"; // Redirect to Chatbot page
+    }
+</script>
+
+        </div>
+    </form>
+</body>
+</html>
+

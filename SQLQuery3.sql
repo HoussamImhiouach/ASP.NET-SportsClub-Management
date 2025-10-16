@@ -1,0 +1,6 @@
+﻿ALTER TABLE TrainingParticipation
+DROP CONSTRAINT FK__TrainingP__Membe__5BE2A6F2;
+
+ALTER TABLE TrainingParticipation
+ADD CONSTRAINT FK__TrainingP__Membe__5BE2A6F2
+FOREIGN KEY (MemberID) REFERENCES Users(Id) ON DELETE CASCADE;
